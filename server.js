@@ -1,21 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const compression = require('compression');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-app.use(
-  compression({
-    threshold: 0,
-    filter: (req, res) => {
-      if (req.headers['x-no-compression']) {
-        return false;
-      }
-      return compression.filter(req, res);
-    },
-  })
-);
+
 app.use(cors());
 app.use(express.json());
 
