@@ -5,13 +5,15 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+
 
 mongoose.connect('mongodb+srv://Tanvi:EMvsjnASIPS2fsga@cluster0.lxv64am.mongodb.net/PersonalBudget?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+}).then(conn => console.log("Mongoose connected successfully")).catch(error => console.log(error));
+
+app.use(cors());
+app.use(express.json());
 
 const User = mongoose.model('User', {
   name: String,
